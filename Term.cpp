@@ -71,7 +71,7 @@ void Term ::  setDirection ( Direction direction )
  void  Term::toXml ( ostream& stream )
 {
   
-  stream << indent   << "<term name =\" " <<name_ <<" \" "" direction =\"" << ""<< direction_<< "\/"">\n";
+  stream << indent   << "<term name =\" " <<name_ <<" \" "" direction =\" " << direction_<< "\"/"">\n";
 
 }
   
