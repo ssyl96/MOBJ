@@ -80,4 +80,14 @@ namespace Netlist {
     {
       Point (x , y);
     }
+
+//toXML
+
+  void  Instance::toXml ( ostream& stream )
+{
+ 
+  stream << indent << "<instance name =\""<<name_ <<"\" mastercell =\"" << ""<<  masterCell_->getName()<< " x=\""<< position_.getX()<<  " y=\""<<position_.getY() <<"\"/"">\n";
+
+}
+
 }

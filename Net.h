@@ -25,6 +25,7 @@ class Net {
     std :: vector < Node * > nodes_ ;
     
     public :
+    void  toXml ( std::ostream& ); //toXml
     Net ( Cell *, const std :: string &, Term :: Type );
     ~ Net ();
     inline Cell * getCell () const ;

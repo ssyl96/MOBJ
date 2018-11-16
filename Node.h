@@ -19,6 +19,7 @@ namespace Netlist {
     public:
       static const size_t  noid;
     public:
+      void  toXml ( std::ostream& );//toXml
                       Node        ( Term*, size_t id=noid );
                      ~Node        ();
       inline  Point   getPosition () const;

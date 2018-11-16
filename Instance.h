@@ -21,6 +21,7 @@ namespace Netlist {
         std :: vector < Term * > terms_ ;
         Point position_ ;
         public :
+        void  toXml ( std::ostream& ); //toXml
         Instance ( Cell * owner , Cell * model , const std :: string & );
         ~Instance ();
         inline const std :: string & getName () const ;
@@ -40,7 +41,7 @@ namespace Netlist {
     inline Cell *                          Instance :: getCell () const { return owner_; }
     inline const std :: vector < Term * >& Instance :: getTerms () const { return terms_; }
     inline Point                           Instance :: getPosition () const { return position_; }
-    inline Cell *                          Instance :: getMasterCell () const { return masterCell_; }
+  inline Cell *                          Instance :: getMasterCell () const {  return masterCell_; }
     
     
 }// Netlist namespace.

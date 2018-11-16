@@ -1,3 +1,4 @@
+
 // -*- explicit-buffer-name: "Main.cpp<M1-MOBJ/4-5>" -*-
 
 #include <string>
@@ -46,18 +47,23 @@ int main ( int argc, char* argv[] )
   Net*      ha_b    = new Net      ( halfadder, "b"   , Term::External );
   Net*      ha_sout = new Net      ( halfadder, "sout", Term::External );
   Net*      ha_cout = new Net      ( halfadder, "cout", Term::External );
+
   Instance* ha_xor2 = new Instance ( halfadder, Cell::find("xor2"), "xor2_1" );
   Instance* ha_and2 = new Instance ( halfadder, Cell::find("and2"), "and2_1" );
+   
   halfadder->connect( "a"   , ha_a    );
   halfadder->connect( "b"   , ha_b    );
   halfadder->connect( "sout", ha_sout );
   halfadder->connect( "cout", ha_cout );
+   
+
   ha_xor2->connect( "i0", ha_a    );
   ha_xor2->connect( "i1", ha_b    );
   ha_xor2->connect(  "q", ha_sout );
   ha_and2->connect( "i0", ha_a    );
   ha_and2->connect( "i1", ha_b    );
   ha_and2->connect(  "q", ha_cout );
+ 
   halfadder->toXml( cout );
 
   return 0;

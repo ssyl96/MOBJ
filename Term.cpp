@@ -37,7 +37,7 @@ namespace Netlist {
 
 
  Cell * Term :: getOwnerCell () const
- { return ( type_ == External ) ? static_cast < Cell * >( owner_ ): static_cast < Instance * >( owner_)->Instance::getMasterCell() ; }
+ {  return ( type_ == External ) ? static_cast < Cell * >( owner_ ): static_cast < Instance * >( owner_)->Instance::getCell() ; }
 
  Point Term :: getPosition () const
  { return node_.getPosition(); }
@@ -45,10 +45,11 @@ namespace Netlist {
   
 void Term  ::   setNet ( Net * net )
 {
+  
   if (net)
     {
       if (net->getCell ()!= getOwnerCell())
-        cerr << "erreur Term et Net n'appartiennent pas a la meme cell"<< endl;
+        cerr << "Erreur Term et Net n'appartiennent pas a la meme cell"<< endl;
     }
   net_ = net;
   net-> add (& node_); 
@@ -68,11 +69,49 @@ void Term ::  setPosition ( int x , int y )
 void Term ::  setDirection ( Direction direction )
 { direction_ = direction; }
 
+  string Term :: toString    ( Term::Type type )
+{
+  return (type == 1) ? "Internal" : "External";
+  
+}
+  string Term :: toString    ( Term::Direction direction )
+  {
+    switch (direction)
+      {
+        case 1:
+         return "In";
+        case 2:
+         return "Out";
+        case 3:
+         return "Inout";
+        case 4:
+          return "Tristate";
+        case 5:
+          return "Transcv";
+         case 6:
+         return "Unknown";
+                
+      }
+  }
+Term ::Direction Term :: toDirection ( string str )
+{
+  if(str == "In")
+    return In;
+  if(str == "Out")
+    return Out;
+  if(str == "Inout")
+    return Inout;
+  if(str == "Tristate")
+    return Tristate;
+  if(str == "Transcv")
+    return Transcv;
+   if(str == "Unknown")
+    return Unknown;
+}
+
  void  Term::toXml ( ostream& stream )
 {
-  
-  stream << indent   << "<term name =\" " <<name_ <<" \" "" direction =\"" << ""<< direction_<< "\/"">\n";
-
+  stream << indent   << "<term name =\""<<name_ <<"\" direction =\"" << ""<<toString( direction_)<< "\"/"">\n";
 }
   
   

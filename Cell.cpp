@@ -165,12 +165,29 @@ void  Cell::toXml ( ostream& stream )
 {
   stream << indent++ << "<cell name=\"" << name_ << "\">\n";
   stream << indent++ << "<terms>\n";
-for (vector <Term*> :: iterator it=terms_.begin() ; it!= terms_.end(); ++it)
+  for (vector <Term*> :: iterator it=terms_.begin() ; it!= terms_.end(); ++it) //term
     {
       (*it)->toXml (stream);
-      }
- stream << --indent << "</terms>\n";
-  stream << --indent << "</cell>\n";
+    }
+  stream << --indent << "</terms>\n";         //fin term
+   stream << indent++ << "<instances>\n";
+
+  for (vector <Instance*> :: iterator it=instances_.begin() ; it!= instances_.end(); ++it) //instances
+    {
+      (*it)->toXml (stream);
+    } 
+  stream <<-- indent << "</instances>\n";      //fin instance
+  stream << ++indent << "<nets>\n";//TODO espece
+ for (vector <Net*> :: iterator it=nets_.begin() ; it!= nets_.end(); ++it) //nets
+    {
+      (*it)->toXml (stream);
+      stream << --indent << "</net>\n"; //???
+     
+    } 
+   stream << --indent << "</nets>\n";      //fin net
+  
+
+  stream << --indent << "</cell>\n";         //fin cell
 }
 
  

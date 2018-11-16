@@ -89,5 +89,15 @@ bool Net :: remove ( Node * node )
     return false;
 }
 
+ void  Net::toXml ( ostream& stream )
+{
+  stream << indent++ << "<net name =\""<<name_ <<"\" type =\"" << ""<< Term::toString(type_)<< "\"/"">\n";
+  for (vector <Node*> :: iterator it=nodes_.begin() ; it!= nodes_.end(); ++it) //nets
+    {
+      (*it)->toXml (stream);
+     
+    } 
+}
+
 
 }
